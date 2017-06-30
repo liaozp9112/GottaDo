@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/qq_share_view"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:background="@drawable/layout_selector"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/qq"/>
+
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="QQ好友"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/wechat_share_view"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:orientation="horizontal"
+            android:background="@drawable/layout_selector"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:padding="5dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/wechat"/>
+
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="微信好友"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/wechat_pyq_share_view"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:orientation="horizontal"
+            android:background="@drawable/layout_selector"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:padding="8dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/wechat_pyq"/>
+
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="朋友圈"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/weibo_share_view"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:orientation="horizontal"
+            android:background="@drawable/layout_selector"
+            android:layout_marginBottom="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:padding="5dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/weibo"/>
+
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="新浪微博"/>
+        </LinearLayout>
+
+        <include layout="@layout/view_vertical_line"></include>
+        <Button
+            android:id="@+id/cancel_menu_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/layout_selector"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:text="@string/cancel_text"/>
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

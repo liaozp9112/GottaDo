@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#25548C</color>
+    <color name="colorPrimaryDark">#25548C</color>
+    <color name="colorAccent">#25548C</color>
+
+    <color name="colorMenuBg">#8192D6</color>
+
+    <color name="colorWhite">#FFFFFF</color>
+
+    <color name="colorBtnNormal">#1eb9f2</color>
+    <color name="colorBtnPress">#0E98CB</color>
+
+    <color name="colorPlayItemBg">#00BDB5</color>
+</resources>

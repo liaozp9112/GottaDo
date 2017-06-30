@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <include layout="@layout/toolbar_text"></include>
+
+    <LinearLayout
+        android:padding="10dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="百度搜索"
+                android:text=""
+                android:singleLine="true"
+                android:id="@+id/search_input" />
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="你要找的是不是"
+                android:text=""
+                android:singleLine="true"
+                android:id="@+id/find_input" />
+        </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:text="@string/preview_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorWhite"
+        android:theme="@style/AppButton"
+        android:id="@+id/btn_preview"
+        android:layout_marginBottom="20dp"/>
+        <LinearLayout
+            android:padding="10dp"
+            android:background="@drawable/img_border"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <cn.com.gottado.tool.view.TouchImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/bd_img"
+                app:srcCompat="@drawable/baidu_bg"/>
+            </LinearLayout>
+        </LinearLayout>
+</LinearLayout>
