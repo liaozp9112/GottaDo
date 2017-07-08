@@ -1,5 +1,10 @@
 package cn.com.gottado.main.play;
 
+import android.content.ComponentName;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.os.Bundle;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetDialog;
 import android.view.View;
@@ -8,14 +13,22 @@ import android.widget.Toast;
 
 import org.xutils.view.annotation.ViewInject;
 
+import java.io.File;
+import java.io.IOException;
+
 import cn.com.gottado.R;
 import cn.com.gottado.tool.base.BaseFragment;
+import cn.com.gottado.tool.config.Config;
+import cn.com.gottado.tool.util.AndroidShare;
+import cn.com.gottado.tool.util.FileUtil;
+import cn.com.gottado.tool.util.ImageUtil;
 
 /**
  * Created by Administrator on 2017/6/20.
  */
 
 public class PlayBasicFragment extends BaseFragment implements View.OnClickListener{
+
     private View qqShareView=null;
     private View wechatShareView=null;
     private View pyqShareView=null;
@@ -23,8 +36,48 @@ public class PlayBasicFragment extends BaseFragment implements View.OnClickListe
     private Button cancelBtn=null;
     private View dialogRootView=null;
     private BottomSheetDialog dialog=null;
+    protected String IMG_PATH="";
+    protected Bitmap showBitmap=null;
 
-    public void popShareMenu(){
+    private AndroidShare androidShare=null;
+
+    protected void popShareMenu(){
+        dialog.show();
+    }
+
+    protected void popSysShareMenu(){
+        androidShare.getSysShareIntent(mActivity.getTitle()+"","",
+                AndroidShare.DRAWABLE,showBitmap);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.cancel_menu_btn:
+                dismissDialog();
+                break;
+            case R.id.qq_share_view:
+                androidShare.shareQQFriend(mActivity.getTitle()+"","",
+                        AndroidShare.DRAWABLE,showBitmap);
+                break;
+            case R.id.wechat_share_view:
+                androidShare.shareWeChatFriend(mActivity.getTitle()+"","",
+                        AndroidShare.DRAWABLE,showBitmap);
+                break;
+            case R.id.wechat_pyq_share_view:
+                androidShare.shareWeChatFriendCircle(mActivity.getTitle()+"","",showBitmap);
+                break;
+            case R.id.weibo_share_view:
+                androidShare.shareWeibo(mActivity.getTitle()+"","",showBitmap);
+                break;
+            default:break;
+        }
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        androidShare=new AndroidShare(mContext);
         if(dialog==null){
             dialog  = new BottomSheetDialog(mContext);
             dialogRootView= mActivity.getLayoutInflater().inflate(R.layout.menu_play_share, null);
@@ -44,31 +97,6 @@ public class PlayBasicFragment extends BaseFragment implements View.OnClickListe
             cancelBtn.setOnClickListener(this);
             dialog.setContentView(dialogRootView);
         }
-        dialog.show();
-    }
-
-
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.cancel_menu_btn:
-                dismissDialog();
-                break;
-            case R.id.qq_share_view:
-                shareImgToQQ();
-                break;
-            case R.id.wechat_share_view:
-                shareImgToWechat();
-                break;
-            case R.id.wechat_pyq_share_view:
-                shareImgToPyq();
-                break;
-            case R.id.weibo_share_view:
-                shareImgToWeibo();
-                break;
-            default:break;
-        }
     }
 
     private void dismissDialog(){
@@ -77,19 +105,17 @@ public class PlayBasicFragment extends BaseFragment implements View.OnClickListe
         }
     }
 
-    public void shareImgToQQ(){
-        Toast.makeText(getActivity(),"QQ",Toast.LENGTH_SHORT).show();
-    }
 
-    public void shareImgToWechat(){
-        Toast.makeText(getActivity(),"wechat",Toast.LENGTH_SHORT).show();
-    }
 
-    public void shareImgToPyq(){
-        Toast.makeText(getActivity(),"pyq",Toast.LENGTH_SHORT).show();
-    }
+    protected void saveImage(String filename, Bitmap bitmap){
 
-    public void shareImgToWeibo(){
-        Toast.makeText(getActivity(),"weibo",Toast.LENGTH_SHORT).show();
+        String filepath= Config.APP_PATH + FileUtil.PLAY_PATH+filename;
+        IMG_PATH=filepath;
+        try {
+            ImageUtil.saveFile(mContext, bitmap,filename, FileUtil.PLAY_PATH);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
     }
 }

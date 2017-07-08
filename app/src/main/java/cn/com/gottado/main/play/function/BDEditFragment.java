@@ -53,7 +53,7 @@ public class BDEditFragment extends PlayBasicFragment{
   @ViewInject(R.id.bd_img)
     private TouchImageView mImageView=null;
 
-    private Bitmap sourBitmap=null,showBitmap;
+    private Bitmap sourBitmap=null;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -96,13 +96,11 @@ public class BDEditFragment extends PlayBasicFragment{
 
     private void createFirstBmp(){
         String text1= StringTools.getEdittxt(input1);
-
         showBitmap = ImageUtil.drawTextToLeftTop(mContext, showBitmap, text1, 50, Color.BLACK, 310, 36);
     }
 
     private void createSecondBmp(){
         String text2= StringTools.getEdittxt(input2);
-      //  ((TextView)findById(R.id.find_input_text)).setText();
         showBitmap = ImageUtil.drawTextToLeftBottom(mContext, showBitmap, text2, 35, Color.BLUE, 590, 14);
     }
 
@@ -111,50 +109,13 @@ public class BDEditFragment extends PlayBasicFragment{
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.action_save:
-                saveImage();
+                saveImage(System.currentTimeMillis()+".jpg",showBitmap);
                 break;
             case R.id.action_share:
-              //  saveAndShare();
-                popShareMenu();
+                createImg(null);
+                popSysShareMenu();
                 break;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    private void saveImage(){
-
-        try {
-          ImageUtil.saveFile(mContext, showBitmap, System.currentTimeMillis() + ".jpg", "/play/");
-            SnackbarUtil.showNormal(mView,"保存成功");
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-
-    }
-
-    private void saveAndShare(){
-        String filename= System.currentTimeMillis() + ".jpg";
-        String filepath= Config.APP_PATH + FileUtil.PLAY_PATH+filename;
-        try {
-            ImageUtil.saveFile(mContext, showBitmap,filename, FileUtil.PLAY_PATH);
-            shareWeChat(filepath);
-        }catch (IOException e){
-            e.printStackTrace();
-            SnackbarUtil.showNormal(mView,"请先安装微信");
-        }
-    }
-
-    private void shareWeChat(String path){
-        Uri uriToImage = Uri.fromFile(new File(path));
-        Intent shareIntent = new Intent();
-        //发送图片到朋友圈
-        //ComponentName comp = new ComponentName("com.tencent.mm", "com.tencent.mm.ui.tools.ShareToTimeLineUI");
-        //发送图片给好友。
-        ComponentName comp = new ComponentName("com.tencent.mm", "com.tencent.mm.ui.tools.ShareImgUI");
-        shareIntent.setComponent(comp);
-        shareIntent.setAction(Intent.ACTION_SEND);
-        shareIntent.putExtra(Intent.EXTRA_STREAM, uriToImage);
-        shareIntent.setType("image/jpeg");
-        startActivity(Intent.createChooser(shareIntent, "搞起"));
     }
 }
