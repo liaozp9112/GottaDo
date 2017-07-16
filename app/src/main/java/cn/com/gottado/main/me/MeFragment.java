@@ -1,5 +1,6 @@
 package cn.com.gottado.main.me;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -12,6 +13,7 @@ import org.xutils.x;
 
 import cn.com.gottado.R;
 import cn.com.gottado.tool.base.BaseFragment;
+import cn.com.gottado.tool.base.SettingsActivity;
 
 /**
  * Created by Administrator on 2017/6/8.
@@ -51,8 +53,13 @@ public class MeFragment extends BaseFragment {
         Bundle bundle = getArguments();
         String title = bundle.getString("title");
         mToolbar.setTitle(title);
-
-
+        findById(R.id.button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(mActivity, SettingsActivity.class);
+                mActivity.startActivity(intent);
+            }
+        });
     }
 
 }

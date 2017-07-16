@@ -1,0 +1,19 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="@string/pre_can_input_log"
+        android:summary="是否允许输出Log日志"
+        android:title="Log日志" />
+
+    <EditTextPreference
+        android:capitalize="words"
+        android:defaultValue="2017-01-01 00:00:00"
+        android:inputType="datetime"
+        android:key="@string/pre_last_update_time"
+        android:summary="上一次对服务器发出数据更新请求的时间"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="最后更新时间" />
+</PreferenceScreen>

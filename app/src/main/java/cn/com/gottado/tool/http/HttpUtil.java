@@ -68,7 +68,7 @@ public class HttpUtil {
             @Override
             public void onError(Throwable throwable, boolean b) {
                 if(mContext!=null) {
-                    Toast.makeText(mContext, "数据请求失败,请检查网络或联系系统管理员,ErrorCode:" + throwable.getMessage(),
+                    Toast.makeText(mContext, "请求失败,Error:" + throwable.getMessage(),
                             Toast.LENGTH_LONG).show();
                 }
                 callBack.onError(throwable, b);

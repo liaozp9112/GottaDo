@@ -4,12 +4,6 @@
     android:layout_height="match_parent">
 
     <include layout="@layout/toolbar"></include>
-
-    <Button
-        android:text="设置"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/button" />
-
+    <include layout="@layout/activity_fragment"></include>
 
 </LinearLayout>

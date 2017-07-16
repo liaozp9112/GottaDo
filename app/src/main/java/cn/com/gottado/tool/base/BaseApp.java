@@ -1,10 +1,15 @@
 package cn.com.gottado.tool.base;
 
 import android.app.Application;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 
 import org.xutils.x;
+
+import cn.com.gottado.service.DataSyncService;
+import cn.com.gottado.tool.config.Config;
+import cn.com.gottado.tool.util.DeviceInfo;
 
 /**
  * Created by Administrator on 2017/6/8.
@@ -21,8 +26,15 @@ public class BaseApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        init();
+    }
+
+    private void init(){
+        Config.init(this);
+        DeviceInfo.init(this);
         x.Ext.init(this);
         x.Ext.setDebug(true); // 是否输出debug日志，开启debug会影响性能
+        startService(new Intent(this, DataSyncService.class));
     }
 
 

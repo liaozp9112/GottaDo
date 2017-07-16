@@ -13,11 +13,11 @@ public class HttpAction {
 
     /**base url action*/
     public static String getServerUrl(){
-        return ShaPreTools.getString("gcyd_pref_server_baseurl",
+        return ShaPreTools.getString("server_baseurl",
                 Config.getContext().getString(R.string.pref_server_baseurl_defaultValue));
     }
 
 
-    public final static String positionAction="position/uploadpositiontask";
+    public final static String listAction="/v1/item/list";
 
 }

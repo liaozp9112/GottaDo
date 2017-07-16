@@ -1,6 +1,8 @@
 package cn.com.gottado.tool.util;
 
 import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
@@ -27,8 +29,9 @@ public class DeviceInfo {
     private static WifiInfo wifiInfo ;
 
     public static void init(Context context){
-        tm= (TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
-        WifiManager wifi = (WifiManager)context.getSystemService(Context.WIFI_SERVICE);
+        mContext=context;
+        tm= (TelephonyManager)mContext.getSystemService(Context.TELEPHONY_SERVICE);
+        WifiManager wifi = (WifiManager)mContext.getSystemService(Context.WIFI_SERVICE);
         wifiInfo=wifi.getConnectionInfo();
     }
 
@@ -182,6 +185,50 @@ public class DeviceInfo {
         sb.append("\nAndroidVersion = " + getAndroidVersion());
         sb.append("\nMacAddress = " + getMacAddress());
         return sb.toString();
+    }
+
+
+    /**
+     * 返回当前程序版本名
+     */
+    public static String getAppVersionName() {
+        String versionName = "";
+        int versioncode=1;
+        try {
+            // ---get the package info---
+            PackageManager pm = mContext.getPackageManager();
+            PackageInfo pi = pm.getPackageInfo(mContext.getPackageName(), 0);
+            versionName = pi.versionName;
+            versioncode = pi.versionCode;
+            if (versionName == null || versionName.length() <= 0) {
+                return "";
+            }
+        } catch (Exception e) {
+            Log.e("VersionInfo", "Exception", e);
+        }
+        return versionName;
+    }
+
+
+    /**
+     * 返回当前程序版本号
+     */
+    public static String getAppVersionCode() {
+        String versionName = "";
+        int versioncode=1;
+        try {
+            // ---get the package info---
+            PackageManager pm = mContext.getPackageManager();
+            PackageInfo pi = pm.getPackageInfo(mContext.getPackageName(), 0);
+            versionName = pi.versionName;
+            versioncode = pi.versionCode;
+            if (versionName == null || versionName.length() <= 0) {
+                return "";
+            }
+        } catch (Exception e) {
+            Log.e("VersionInfo", "Exception", e);
+        }
+        return String.valueOf(versioncode);
     }
 }
 

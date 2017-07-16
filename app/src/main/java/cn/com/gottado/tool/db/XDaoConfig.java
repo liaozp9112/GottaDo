@@ -12,7 +12,9 @@ public class XDaoConfig {
 
     private final static int DB_VERSION=1;
 
-    private final static String DB_PATH="";
+ //   private final static String DB_PATH="sdcard/gottado/main/db";
+
+    private final static String DB_PATH="/data/data/cn.com.gottado.tool.db/database";
 
     private final static String DB_NAME="gottado.db";
 
@@ -21,6 +23,7 @@ public class XDaoConfig {
     public static  DbManager.DaoConfig getDaoConfig() {
         if(daoConfig==null){
             initDbConfig();
+
         }
         return daoConfig;
     }

@@ -17,6 +17,9 @@ import android.view.View;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 
+import com.ypy.eventbus.EventBus;
+
+import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 import cn.com.gottado.R;
@@ -27,6 +30,7 @@ import cn.com.gottado.R;
 
 public  class BaseActivity extends android.support.v7.app.AppCompatActivity{
     public AppCompatActivity mActivity=this;
+
     public Toolbar mToolbar=null;
 
     @Override
@@ -34,6 +38,7 @@ public  class BaseActivity extends android.support.v7.app.AppCompatActivity{
         super.onCreate(savedInstanceState);
         BaseApp.verifyStoragePermissions(this);
         x.view().inject(this);
+
     }
 
 

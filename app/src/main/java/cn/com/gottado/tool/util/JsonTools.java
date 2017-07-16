@@ -262,4 +262,57 @@ public class JsonTools {
         }
         return params;
     }
+
+    /**
+     * 从json对象中取json数组
+     * @param jsonObj
+     * @param key
+     * @return
+     */
+    public static JSONArray getJArrFromJObj(JSONObject jsonObj,String key){
+       JSONArray arr=null;
+        try {
+            arr=jsonObj.getJSONArray(key);
+        }catch (Exception e){
+
+        }
+        return arr;
+    }
+
+
+    /**
+     * 从jsonarr数组中取json
+     * @param arr
+     * @param index
+     * @return
+     */
+    public static JSONObject getJsonFromJArr(JSONArray arr,int index){
+        JSONObject object=null;
+        try {
+            object=arr.getJSONObject(index);
+        }catch (Exception e){
+
+        }
+        return object;
+    }
+
+
+    /**
+     * 获取Json的String属性
+     *
+     * @param object
+     * @param key
+     * @return
+     */
+    public static int getJsonInteger(JSONObject object, String key) {
+        int value = 0;
+
+        if (contain(object, key)) {
+            try {
+                value = Integer.valueOf(object.getString(key));
+            } catch (Exception e) {
+            }
+        }
+        return value;
+    }
 }
